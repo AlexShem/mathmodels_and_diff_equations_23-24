@@ -68,7 +68,7 @@ end
 figure(3)
 plot(x0, rho_0, '-s');
 hold on;
-plot(x0, rho, '-d');
+plot(xT, rho, '-d');
 hold off;
 legend('$\rho(0, x)$', '$\rho(1, x)$', ...
     Interpreter = 'latex', FontSize = 16, Location = 'best');
