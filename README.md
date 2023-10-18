@@ -12,7 +12,7 @@ Sometimes on Thursdays
 
 # 📚 Content
 
-## Seminar 1: _Transport and continuity equations_
+## Seminar 1: _Transport and Continuity Equations_
 
 September 21st, 2023
 
@@ -23,7 +23,7 @@ September 21st, 2023
 - Numeric calculations using `ode45()`
 - Visualizations of the results
 
-## Seminar 2: _Fourier method for diffusion equation_
+## Seminar 2: _Fourier Method for Diffusion Equation_
 
 September 28th, 2023
 
@@ -36,7 +36,7 @@ $$\partial_t u(t, x) = D \partial_x^2 u(t, x)$$
     - Border conditions satisfaction
 - Development of the formulas
 
-## Seminar 3: _Fourier method for diffusion equation (continued)_
+## Seminar 3: _Fourier Method for Diffusion Equation (continued)_
 
 October 5th, 2023
 
@@ -46,3 +46,13 @@ October 5th, 2023
 - Code of the Fourier method
     - Algorithm
     - Visualisation (with animation)
+
+## Seminar 4: _Explicit Euler Scheme for Diffusion Equation_
+
+October 12th, 2023
+
+- Numerical approximation of the first and second derivatives
+- Statement of the explicit Euler scheme for the diffusion equation
+- Graphical form of the scheme
+- Matrix form of the scheme
+- Dirichlet border conditions in the matrix form
