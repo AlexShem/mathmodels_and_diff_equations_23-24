@@ -16,10 +16,10 @@ Nt = ceil(T/tau) + 1;
 u_0 = exp(-(x - .5).^2 ./ .05);
 
 %% Transition matrices
-U_now = eye(Nx);
-U_next = (-1-2*nu)*eye(Nx) + ...
-    diag(nu * ones(Nx-1, 1), 1) + ...
-    diag(nu * ones(Nx-1, 1),-1);
+U_now = -eye(Nx);
+U_next = (1+2*nu)*eye(Nx) + ...
+    diag(-nu * ones(Nx-1, 1), 1) + ...
+    diag(-nu * ones(Nx-1, 1),-1);
 
 %% Dirichlet border condition
 U_next(1, :) = [1, zeros(1, Nx - 1)];
