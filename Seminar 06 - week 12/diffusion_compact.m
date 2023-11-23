@@ -4,7 +4,7 @@ L = 1;
 T = 1;
 
 Nx = 100;
-nu = 1; % nu = D * tau / h^2
+nu = .5; % nu = D * tau / h^2
 
 %% Secondary parameters
 x = linspace(0, L, Nx + 1);
