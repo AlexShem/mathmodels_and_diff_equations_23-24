@@ -70,3 +70,14 @@ November 9th, 2023
 - Animation of the solution over time using `drawnow`.
 - Implementation of the implicit Euler scheme.
 - Experimental comparison of the stability regions of both schemes depending on $\nu = D \tau / h^2$.
+
+## Seminar 6: _Constructing and Implementing Compact Schemes for the Heat Equation_
+
+November 23th, 2023
+
+- Development of a compact scheme for the diffusion equation.
+- Designing a scheme template and normalization of its coefficients.
+- Selection and application of test functions into the compact scheme equation to derive the coefficient equations.
+- Symbolic solution of the coefficient system using `solve()`.
+- Computing the heat equation (diffusion) solution using the derived compact scheme.
+- Implementation of periodic boundary conditions in the scheme.
