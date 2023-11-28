@@ -56,3 +56,17 @@ October 12th, 2023
 - Graphical form of the scheme
 - Matrix form of the scheme
 - Dirichlet border conditions in the matrix form
+
+## Seminar 5: _Euler Schemes and Stability Analysis for Diffusion Equation in Matlab_
+
+November 9th, 2023
+
+- Implementation of the explicit Euler method in Matlab.
+- First time step, when it crossed the boundary `T`.
+- Filling in the three-diagonal matrix of the system using `eye()` and `diag()`.
+- Integrating the system over time using `for` loop.
+- Visualization of the solution as a surface over the space-time plane `surf(x, y, u)`.
+- Implementation of Neumann boundary conditions $\partial_x u(t, 0) = 0$ for the explicit Euler scheme.
+- Animation of the solution over time using `drawnow`.
+- Implementation of the implicit Euler scheme.
+- Experimental comparison of the stability regions of both schemes depending on $\nu = D \tau / h^2$.
