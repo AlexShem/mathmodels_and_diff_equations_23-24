@@ -108,8 +108,6 @@ for Nx = grid_sizes
 end
 ```
 
-### Task 4.2
-
-: Plotting Norms
+### Task 4.2: Plotting Norms
 
 Plot the $C$ and $L_2$ norms for each grid size. Use logarithmic scaling if necessary to better visualize the results.
