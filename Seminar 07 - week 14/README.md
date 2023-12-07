@@ -111,3 +111,98 @@ end
 ### Task 4.2: Plotting Norms
 
 Plot the $C$ and $L_2$ norms for each grid size. Use logarithmic scaling if necessary to better visualize the results.
+
+## Section: Coefficients of Computational Schemes
+
+This section outlines the coefficients used in three computational schemes: the Explicit Euler Scheme, the Crank-Nicolson Scheme, and the Compact Scheme. These coefficients are crucial for the stability and accuracy of numerical solutions to differential equations.
+
+### 1. Explicit Euler Scheme (Euler\_ex)
+
+The Explicit Euler Scheme is a straightforward time integration method used for solving ordinary differential equations. It is a first-order method.
+
+#### Coefficients:
+
+*   Left Part:
+    *   $a = 0$
+    *   $b = -1 + 2\nu$
+    *   $c = -\nu$
+*   Right Part:
+    *   $p1 = 0$
+    *   $p2 = 0$
+    *   $q1 = \tau$
+    *   $q2 = 0$
+
+#### MATLAB Code Snippet:
+
+```matlab
+% Explicit Euler Scheme Coefficients
+a = 0;
+b = -1 + 2*nu;
+c = -nu;
+p1 = 0;
+p2 = 0;
+q1 = tau;
+q2 = 0;
+```
+
+### 2. Crank-Nicolson Scheme (cn)
+
+The Crank-Nicolson Scheme is a popular second-order method for numerical solution of partial differential equations.
+
+#### Coefficients:
+
+*   Left Part:
+    *   $a = -\frac{\nu}{2\alpha}$
+    *   $b = \frac{-1 + \nu}{\alpha}$
+    *   $c = -\frac{\nu}{2\alpha}$
+*   Right Part:
+    *   $p1 = 0$
+    *   $p2 = 0$
+    *   $q1 = \frac{\tau}{2\alpha}$
+    *   $q2 = \frac{\tau}{2\alpha}$
+*   Where $\alpha = 1 + \nu$
+
+#### MATLAB Code Snippet:
+
+```matlab
+% Crank-Nicolson Scheme Coefficients
+alpha = 1 + nu;
+a = -nu/2/alpha;
+b = (-1 + nu)/alpha;
+c = -nu/2/alpha;
+p1 = 0;
+p2 = 0;
+q1 = tau/2/alpha;
+q2 = tau/2/alpha;
+```
+
+### 3. Compact Scheme
+
+The Compact Scheme is designed for high accuracy and efficiency in solving differential equations.
+
+#### Coefficients:
+
+*   Left Part:
+    *   $a = \frac{2(1 - 6\nu)}{\alpha}$
+    *   $b = \frac{-4(5 - 6\nu)}{\alpha}$
+    *   $c = \frac{-2(1 + 6\nu)}{\alpha}$
+*   Right Part:
+    *   $p1 = \frac{\tau}{\alpha}$​
+    *   $p2 = \frac{\tau}{\alpha}$​
+    *   $q1 = \frac{10\tau}{\alpha}$
+    *   $q2 = \frac{10\tau}{\alpha}$
+*   Where $\alpha = 4(6\nu + 5)$
+
+#### MATLAB Code Snippet:
+
+```matlab
+% Compact Scheme Coefficients
+alpha = 4*(6*nu + 5);
+a = 2*(1 - 6*nu)/alpha;
+b = -4*(5 - 6*nu)/alpha;
+c = -2*(1 + 6*nu)/alpha;
+p1 = tau/alpha;
+p2 = tau/alpha;
+q1 = 10*tau/alpha;
+q2 = 10*tau/alpha;
+```
