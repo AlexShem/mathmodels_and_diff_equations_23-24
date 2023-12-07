@@ -112,7 +112,7 @@ end
 
 Plot the $C$ and $L_2$ norms for each grid size. Use logarithmic scaling if necessary to better visualize the results.
 
-## Section: Coefficients of Computational Schemes
+## Coefficients of Computational Schemes
 
 This section outlines the coefficients used in three computational schemes: the Explicit Euler Scheme, the Crank-Nicolson Scheme, and the Compact Scheme. These coefficients are crucial for the stability and accuracy of numerical solutions to differential equations.
 
