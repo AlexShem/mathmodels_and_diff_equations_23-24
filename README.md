@@ -81,3 +81,28 @@ November 23th, 2023
 - Symbolic solution of the coefficient system using `solve()`.
 - Computing the heat equation (diffusion) solution using the derived compact scheme.
 - Implementation of periodic boundary conditions in the scheme.
+
+## Seminar 7: _Enhancing Compact Schemes for the Diffusion Equation with External Force_
+
+December 7th, 2023
+
+- **Introduction to External Force Integration in Diffusion Equations**:
+    - Modifying existing numerical schemes to include external force terms.
+- **Defining and Implementing the External Force Function**:
+    - Creation of a MATLAB function to define the external force $f(t, x)$.
+    - Integration of this force function into the numerical scheme for the diffusion equation.
+- **Establishing a True Solution for Comparison**:
+    - Definition of a true solution $u_{\text{true}}(t, x) = \sin(t) \cdot \cos(x)$ for the diffusion equation with an external force.
+    - MATLAB implementation of the true solution for accuracy comparison.
+- **Derivation and Implementation of the Corresponding Force**:
+    - Analytical derivation of the force function corresponding to the chosen true solution.
+    - Implementing this derived force function in MATLAB.
+- **Numerical and True Solution Comparison**:
+    - Visualization and comparison of the numerical solution with the true solution at various time steps.
+    - MATLAB code for plotting and analyzing the solution differences.
+- **Grid Size Analysis and Accuracy Assessment**:
+    - Evaluation of the numerical solution accuracy for different grid sizes.
+    - Keeping the Courant parameter $\nu$ constant during this analysis.
+    - Plotting and interpreting the $C$ and $L^2$​ norms of the difference between numerical and true solutions.
+- **Hands-On MATLAB Coding Session**:
+    - Analysis of solution accuracy against the true solution for various grid sizes.
