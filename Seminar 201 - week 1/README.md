@@ -110,7 +110,7 @@ Set the integaration time to `T = 1` and the number of spatial points to be `Nx 
 
 ```matlab
 T = 1;
-Nx = 100;
+Nx = 50;
 nu = 0.1;
 
 x = linspace(0, L, Nx + 1);
