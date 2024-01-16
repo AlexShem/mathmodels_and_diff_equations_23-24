@@ -32,11 +32,15 @@ We apply periodic boundary conditions, implying the equivalence of values on the
 
 ### Grid and Time Step Determination
 
-Given a rod of length $L$, we compute the spatial step $h = L/N$ for $N$ spatial points. The temporal step $\tau$ is then calculated based on $h$ and the fixed dimensionless parameter $\nu$.
+Given a rod of length $L$, we compute the spatial step $h = L/N$ for $N$ spatial points.
+
+> Remember that here $N$ is the number of the unknown values of the function $u$. Since we are using periodic boundary conditions, we have a total of $N+1$ spatial points, where the last point is the same as the first one.
+
+The temporal step $\tau$ is then calculated based on $h$ and the **fixed** dimensionless parameter $\nu$.
 
 ### Reference Solutions
 
-We will consider two reference solutions $u^\mathrm{ref}$ for our numerical experiments, with the aim to compare them to the obtained numerical solutions $u$ and evaluate the error norms.
+We will consider a reference solution $u^\mathrm{ref}$ for our numerical experiments, with the aim to compare it to the obtained numerical solution $u$ and evaluate the error norms.
 
 ## Section 3: MATLAB Implementation
 
@@ -46,7 +50,10 @@ Establish the discrete grid in MATLAB, considering the number of spatial points 
 
 ### Task 3.2: Coefficient Calculation
 
-Calculate the coefficients for the CN scheme and the compact scheme as per the given formulas.
+Calculate the coefficients for the CN scheme and the "5-5-5" compact scheme as per the given formulas.
+
+![u_template](u_template.png)
+![f_template](f_template.png)
 
 **Code Snippet**:
 
@@ -213,7 +220,7 @@ end
 
 ### Task 5.2: Visualization
 
-Visualize the error norms and the numerical solutions compared to the reference solutions.
+Visualize the error norms.
 
 **Code Snippet**:
 
