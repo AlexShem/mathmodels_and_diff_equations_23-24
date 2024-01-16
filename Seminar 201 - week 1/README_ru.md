@@ -1,56 +1,56 @@
-# Practical Session: Numerical Solutions to the Rod Equation
+# Практическое занятие: Численное решение уравнения Рода
 
-## Overview
+## Обзор
 
-In this session, we will investigate the numerical solutions of the rod equation using different finite difference schemes. The primary focus will be on the standard Crank-Nicolson scheme and the development of compact schemes, aiming to understand their implementation and effectiveness in solving the rod equation numerically.
+На этом занятии мы будем исследовать численные решения уравнения Стержня с помощью различных конечно-разностных схем. Основное внимание будет уделено стандартной схеме Кранка-Николсона и разработке компактных схем, с целью понять их реализацию и эффективность при численном решении уравнения Стержня.
 
-## Goals
+## Цели
 
-1. Understand the discretization of the rod equation and its implications.
-2. Implement the Crank-Nicolson scheme and a compact scheme in MATLAB.
-3. Analyze the accuracy and stability of the numerical solutions.
+1. Понять дискретизацию уравнения стержня и ее последствия.
+2. Реализовать схему Кранка-Николсона и компактную схему в MATLAB.
+3. Проанализировать точность и устойчивость численных решений.
 
-## Section 1: Theoretical Background
+## Раздел 1: Теоретические основы
 
-### Rod Equation and Discretization
+### Стержневое уравнение и дискретизация
 
-We consider the rod equation, which can be expressed in its simplified form as:
+Мы рассматриваем уравнение стержня, которое в упрощенном виде можно выразить как:
 
 $$
 \frac{\partial^2 u}{\partial t^2} - D \frac{\partial^4 u}{\partial x^2 \, \partial t^2} + C \frac{\partial^4 u}{\partial x^4} =  f(t, x),
 $$
 
-where the coefficients $D = R^2$, $C = E R^2 / \rho$, $x$ is a spatial variable, $t$ is time, $\rho>0$ is the density of the rod material, $R$ is the cross-section radius, and $E$ is Young's modulus of the material. The right part $f(t,\, x)$ is a forcing.
+где коэффициенты $D = R^2$, $C = E R^2 / \rho$, $x$ - пространственная переменная, $t$ - время, $\rho>0$ - плотность материала стержня, $R$ - радиус поперечного сечения, $E$ - модуль Юнга материала. Правая часть $f(t,\, x)$ является вынуждающей.
 
-The discretization process introduces temporal step $\tau$ and spatial step $h$, leading to the definition of dimensionless parameters $\nu = C \tau^2/h^4$ and $\mu = D/h^2$.
+В процессе дискретизации вводится временной шаг $\tau$ и пространственный шаг $h$, что приводит к определению безразмерных параметров $\nu = C \tau^2/h^4$ и $\mu = D/h^2$.
 
-### Boundary Conditions
+### Граничные условия
 
-We apply periodic boundary conditions, implying the equivalence of values on the left and right borders of the spatial domain.
+Мы применяем периодические граничные условия, подразумевающие эквивалентность значений на левой и правой границах пространственной области.
 
-## Section 2: Numerical Problem Statement
+## Раздел 2: Численная постановка задачи
 
-### Grid and Time Step Determination
+### Определение сетки и временного шага
 
-Given a rod of length $L$, we compute the spatial step $h = L/N$ for $N$ spatial points.
+Учитывая длину стержня $L$, мы вычисляем пространственный шаг $h = L/N$ для $N$ пространственных точек.
 
-> Remember that here $N$ is the number of the unknown values of the function $u$. Since we are using periodic boundary conditions, we have a total of $N+1$ spatial points, where the last point is the same as the first one.
+> Помните, что здесь $N$ - это число неизвестных значений функции $u$. Поскольку мы используем периодические граничные условия, у нас всего $N+1$ пространственных точек, где последняя точка совпадает с первой.
 
-The temporal step $\tau$ is then calculated based on $h$ and the **fixed** dimensionless parameter $\nu$.
+Временной шаг $\tau$ рассчитывается на основе $h$ и **фиксированного** безразмерного параметра $\nu$.
 
-### Reference Solutions
+### Эталонные решения
 
-We will consider a reference solution $u^\mathrm{ref}$ for our numerical experiments, with the aim to compare it to the obtained numerical solution $u$ and evaluate the error norms.
+Для численных экспериментов мы рассмотрим эталонное решение $u^\mathrm{ref}$, чтобы сравнить его с полученным численным решением $u$ и оценить нормы погрешности.
 
-## Section 3: MATLAB Implementation
+## Раздел 3: Реализация в MATLAB
 
-### Task 3.1: Discrete Grid Setup
+### Задача 3.1: Настройка дискретной сетки
 
-Establish the discrete grid in MATLAB, considering the number of spatial points $N$ and temporal steps $M$.
+Создайте дискретную сетку в MATLAB, учитывая количество пространственных точек $N$ и временных шагов $M$.
 
-### Task 3.2: Coefficient Calculation
+### Задача 3.2: Вычисление коэффициентов
 
-Calculate the coefficients for the CN scheme and the "5-5-5" compact scheme as per the given formulas.
+Рассчитайте коэффициенты для схемы CN и компактной схемы "5-5-5" по приведенным формулам.
 
 ![u_template](u_template.png)
 ![f_template](f_template.png)
@@ -93,11 +93,11 @@ q1 = 56*tau^2 / alpha;
 r1 = 246*tau^2 / alpha;
 ```
 
-## Section 4: Numerical Schemes Comparison
+## Раздел 4: Сравнение численных схем
 
-### Task 4.1: Define the Problem Parameters
+### Задача 4.1: Определите параметры задачи
 
-Consider a scenario with the steel rod with the following physical parameters:
+Рассмотрим сценарий со стальным стержнем со следующими физическими параметрами:
 
 ```matlab
 rho = 7900;
@@ -106,7 +106,7 @@ E = 210e9;
 L = 2*pi;
 ```
 
-Set the integaration time to `T = 1` and the number of spatial points to be `Nx = 50`. Also, fix the dimensionless parameter $\nu = C \tau^2/h^4$ to be equal to $0.1$. Calculate the corresponding time step $\tau$.
+Задайте время интегрирования `T = 1` и количество пространственных точек `Nx = 50`. Также установите безразмерный параметр $\nu = C \tau^2/h^4$ равным $0.1$. Вычислите соответствующий шаг по времени $\tau$.
 
 ```matlab
 T = 1;
@@ -126,7 +126,7 @@ T_final = tau * (Nt-1);
 t = linspace(0, T_final, Nt);
 ```
 
-Finally, define the reference solution and the corresponding forcing:
+Наконец, определите опорное решение и соответствующее ему принуждение:
 
 ```matlab
 % Reference soltuion
@@ -134,9 +134,9 @@ u_ref = @(t, x) sin(x + t*sqrt(C/(D+1)));
 f_ref = @(t, x) zeros(size(x));
 ```
 
-### Task 4.2: Implementing the CN and "5-5-5" Schemes
+### Задание 4.2: Реализация схем CN и "5-5-5"
 
-Implement the CN and "5-5-5" schemes in MATLAB and solve the rod equation numerically. Start by defining the transition matrices for the left- and right-hand sides.
+Реализуйте схемы CN и "5-5-5" в MATLAB и решите уравнение стержня численно. Начните с определения матриц перехода для левой и правой частей.
 
 **Code Snippet**:
 
@@ -176,7 +176,7 @@ U_prev = U_next;
 F_prev = F_next;
 ```
 
-Now, implement the numerical method.
+Теперь реализуйте численный метод.
 
 ```matlab
 % Integration
@@ -195,11 +195,11 @@ end
 u = [u, u(:, 1)];
 ```
 
-## Section 5: Error Analysis
+## Раздел 5: Анализ ошибок
 
-### Task 5.1: Error Norm Calculation
+### Задача 5.1: Вычисление нормы погрешности
 
-Calculate the $C$ and $L^2$ norms of the error between the reference solution and the numerical solution obtained from each scheme at the final time moment. To do so, run the numerical simulations for a selected scheme for several values of $N$ by running `rod_integration` function (created from the code above). Each time, calculate and store the errors.
+Вычислите $C$ и $L^2$ нормы погрешности между опорным решением и численным решением, полученным по каждой схеме в конечный момент времени. Для этого запустите численное моделирование для выбранной схемы для нескольких значений $N$, выполнив функцию `rod_integration` (создана из кода выше). Каждый раз вычисляйте и сохраняйте ошибки.
 
 ```matlab
 scheme = "CN";
@@ -218,9 +218,9 @@ for n = 1:length(Nx_set)
 end
 ```
 
-### Task 5.2: Visualization
+### Задание 5.2: Визуализация
 
-Visualize the error norms.
+Визуализируйте нормы погрешности.
 
 **Code Snippet**:
 
@@ -236,6 +236,6 @@ xlabel('N_x');
 title('L^2 norm');
 ```
 
-## Conclusion
+## Заключение
 
-Summarize the findings from the practical session, highlighting the differences in accuracy between the schemes.
+Подведите итоги практического занятия, подчеркнув различия в точности между схемами.
