@@ -15,7 +15,6 @@ test_funs = transpose(x_test.' * t_test);
 test_funs = test_funs(:);
 % Keep 11 test functions
 test_funs = test_funs(1:end-1);
-% test_funs = [1, t^2, t^4, x^2, x^2*t^2, x^4, x^4*t^2, x^6].';
 
 %% Differential equation: Rod
 du_fun = @(U) diff(U, t, 2) ...
