@@ -35,4 +35,4 @@ for i = 1:length(Nx_values)
 end
 
 %% Visualization of Error Norms
-plotErrorNorms(Nx_values, C_norms, L2_norms, 2);
+plotErrorNorms(Nx_values, C_norms, L2_norms, 1);
