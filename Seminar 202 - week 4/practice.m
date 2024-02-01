@@ -121,5 +121,7 @@ figure(2)
 for k = 1 : 100 : Nt
     plot(x, u(k, :));
     axis([0 L -1 1]);
-    pause(0.1);
+    title(['t = ', num2str(round(t(k), 2), '%.2f')]);
+    xlabel('x');
+    drawnow limitrate
 end
