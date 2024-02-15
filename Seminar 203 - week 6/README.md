@@ -5,10 +5,10 @@
 We consider the rod equation, which can be expressed in its simplified form as:
 
 $$
-\frac{\partial^2 u}{\partial t^2} - D \frac{\partial^4 u}{\partial x^2 \, \partial t^2} + C \frac{\partial^4 u}{\partial x^4} =  f(t, x),
+\frac{\partial^2 u}{\partial t^2} - D \frac{\partial^4 u}{\partial x^2 \partial t^2} + C \frac{\partial^4 u}{\partial x^4} =  f(t, x),
 $$
 
-where the coefficients $D = R^2$, $C = E R^2 / \rho$, $x$ is a spatial variable, $t$ is time, $\rho>0$ is the density of the rod material, $R$ is the cross-section radius, and $E$ is Young's modulus of the material. The right part $f(t,\, x)$ is a forcing.
+where the coefficients $D = R^2$, $C = E R^2 / \rho$, $x$ is a spatial variable, $t$ is time, $\rho>0$ is the density of the rod material, $R$ is the cross-section radius, and $E$ is Young's modulus of the material. The right part $f(t, x)$ is a forcing.
 
 The discretization process introduces temporal step $\tau$ and spatial step $h$, leading to the definition of dimensionless parameters $\nu = C \tau^2/h^4$ and $\mu = D/h^2$.
 
@@ -141,15 +141,18 @@ $$
 A test function $u_\text{ref}$ should be a monome and it should satisfy both conditions. For example, the simplest monome is $u_\text{ref}(t, x) = x^2$. Substituting it into the rod equation gives us $f_\text{ref} = 0$. So, applying these two reference functions into the boundary condition stencil for two possible normalizations we get
 
 $$
-1 \cdot 0 + 0 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0, \\
-0 \cdot 0 + 1 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
+1 \cdot 0 + 0 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 + \alpha_2^1 \cdot (2h)^2 + \alpha_3^1 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0,
+$$
+
+$$
+0 \cdot 0 + 1 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 + \alpha_2^1 \cdot (2h)^2 + \alpha_3^1 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
 $$
 
 Here, the first equation contributes to the SLAE of the boundary value $u(0, 0)$, and the second equation is the part of SLAE of the pre-boundary value $u(0, h)$. The full set of reference function is thus as follows:
 
 | No. | $u_\text{ref}$ | $f_\text{ref}$ | Border Equation | Pre-border Equation |
 |---|---|---|---|---|
-| 1 | $x^2$ | $0$ | $4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ | $h^2 + 4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ |
+| 1 | $x^2$ | $0$ | $4h^2(\alpha_2^0 + \alpha_2^1) + 9h^2(\alpha_3^0 + \alpha_3^1) = 0$ | $h^2 + 4h^2(\alpha_2^0 + \alpha_2^1) + 9h^2(\alpha_3^0 + \alpha_3^1) = 0$ |
 | 2 | $x^3$ | $0$ |  |  |
 | 3 | $x^4$ | $24C$ |  |  |
 | 4 | $t x^2$ | $0$ |  |  |
