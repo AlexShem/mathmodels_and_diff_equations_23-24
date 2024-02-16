@@ -10,14 +10,13 @@ $$
 
 where the coefficients $D = R^2$, $C = E R^2 / \rho$, $x$ is a spatial variable, $t$ is time, $\rho>0$ is the density of the rod material, $R$ is the cross-section radius, and $E$ is Young's modulus of the material. The right part $f(t, x)$ is a forcing.
 
-The discretization process introduces temporal step $\tau$ and spatial step $h$, leading to the definition of dimensionless parameters $\nu = C \tau^2/h^4$ and $\mu = D/h^2$.
+The discretization process introduces a temporal step $\tau$ and a spatial step $h$, leading to the definition of dimensionless parameters $\nu = C \tau^2/h^4$ and $\mu = D/h^2$.
 
 ## 1. Interpolation to the Final Time Moment
 
 Usually, for the numerical simulations we set an upper integration time limit `T`. So, we expect the computational method, like, *Crank-Nicolson scheme* or a *Compact scheme* to produce the numerical solution on the time interval $t \in [0, T]$. However, by introducing the spatial step `h` and the temporal step `tau` we can only calculate the values of the unknown function $u(t, x)$ at predetermined temporal-spatial points.
 
-For example, consider the final time of interest to be `T = 1` and the temporal step `tau = 0.3`. Then, we can only compute the function `u` at times `t = [0, 0.3, 0.6, 0.9, 1.2]`. Here, the initial conditions are set at time `t = 0` and we continue integration until the first time we exceed the desired time `T`. In this case, the total number of temporal points `Nt` needed to compute the solution is the number of termporal steps required to exceed the desired time `T` plus one for the initial time moment `t = 0`. A sample code snippet may have the following form:
-
+For example, consider the final time of interest to be `T = 1` and the temporal step `tau = 0.3`. Then, we can only compute the function `u` at times `t = [0, 0.3, 0.6, 0.9, 1.2]`. Here, the initial conditions are set at time `t = 0` and we continue integration until the first time we exceed the desired time `T`. In this case, the total number of temporal points `Nt` needed to compute the solution is the number of temporal steps required to exceed the desired time `T` plus one for the initial time moment `t = 0`. A sample code snippet may have the following form:
 ```matlab
 T = 1;
 tau = 0.3;
@@ -30,19 +29,19 @@ On the figure above, the solid black line represents the reference solution `u_r
 
 To get the value of the function `u` at the desired time `T`, we can interpolate the values using one of the available methods:
 
-- **1-D interpolation**: Condiser each slice of the function `u` along the spatial coordinate `x` as an intependent function of time `t`, and perform `Nx` interpolations to time `T`. Combine `for` cycle and [`interp1`](https://www.mathworks.com/help/releases/R2023b/matlab/ref/interp1.html) funtction;
-- **2-D interpolation**: Consider spatial and temporal variables simultaneously, and a perform gridded interpolation using [`interp2`](https://www.mathworks.com/help/releases/R2023b/matlab/ref/interp2.html).
+- **1-D interpolation**: Consider each slice of the function `u` along the spatial coordinate `x` as an independent function of time `t`, and perform `Nx` interpolations to time `T`. Combine `for` cycle and [`interp1`](https://www.mathworks.com/help/releases/R2023b/matlab/ref/interp1.html) function;
+- **2-D interpolation**: Consider spatial and temporal variables simultaneously, and perform gridded interpolation using [`interp2`](https://www.mathworks.com/help/releases/R2023b/matlab/ref/interp2.html).
 
 Usually, interpolation techniques allow different `method` parameters:
 
 - **Linear** interpolation,
-- **Cubic** interpolation (based on a cubic convolution),
+- **Cubic** interpolation (based on cubic convolution),
 - **Spline** interpolation,
 - and others.
 
 Here, cubic convolution interpolation employs a kernel-based approach focusing on local smoothness, using a weighted average determined by a cubic polynomial. In contrast, cubic spline interpolation constructs a globally smooth, piecewise cubic polynomial that passes exactly through all known data points, emphasizing continuity and smoothness across the entire range, making it suitable for mathematical modeling and data fitting where precise data representation is crucial.
 
-It is up to the user to define which method works the best in a particular problem. A code snipped may look as following:
+It is up to the user to define which method works the best in a particular problem. A code snippet may look as follows:
 
 ```matlab
 x = linspace(0, L, Nx + 1);
@@ -141,18 +140,15 @@ $$
 A test function $u_\text{ref}$ should be a monome and it should satisfy both conditions. For example, the simplest monome is $u_\text{ref}(t, x) = x^2$. Substituting it into the rod equation gives us $f_\text{ref} = 0$. So, applying these two reference functions into the boundary condition stencil for two possible normalizations we get
 
 $$
-1 \cdot 0 + 0 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 + \alpha_2^1 \cdot (2h)^2 + \alpha_3^1 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0,
-$$
-
-$$
-0 \cdot 0 + 1 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 + \alpha_2^1 \cdot (2h)^2 + \alpha_3^1 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
+1 \cdot 0 + 0 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0, \\
+0 \cdot 0 + 1 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
 $$
 
 Here, the first equation contributes to the SLAE of the boundary value $u(0, 0)$, and the second equation is the part of SLAE of the pre-boundary value $u(0, h)$. The full set of reference function is thus as follows:
 
 | No. | $u_\text{ref}$ | $f_\text{ref}$ | Border Equation | Pre-border Equation |
 |---|---|---|---|---|
-| 1 | $x^2$ | $0$ | $4h^2(\alpha_2^0 + \alpha_2^1) + 9h^2(\alpha_3^0 + \alpha_3^1) = 0$ | $h^2 + 4h^2(\alpha_2^0 + \alpha_2^1) + 9h^2(\alpha_3^0 + \alpha_3^1) = 0$ |
+| 1 | $x^2$ | $0$ | $4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ | $h^2 + 4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ |
 | 2 | $x^3$ | $0$ |  |  |
 | 3 | $x^4$ | $24C$ |  |  |
 | 4 | $t x^2$ | $0$ |  |  |
