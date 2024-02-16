@@ -77,7 +77,7 @@ We will focus on two of them, to which by this day the appropriate approximation
 
 ### Naive Approximation
 
-A straighforward way to implement a boundary condition which includes spatial derivatives is to substitute its differentiation operators with the corresponding discrete approximation. For example, a directional approximation of the first derivative is
+A straightforward way to implement a boundary condition which includes spatial derivatives is to substitute its differentiation operators with the corresponding discrete approximation. For example, a directional approximation of the first derivative is
 
 $$
 \partial_x u(t, 0) \approx \frac{u(t, h) - u(t, 0)}{h}
@@ -88,7 +88,7 @@ So, the **pinched end** boundary condition on the left edge can be transformed i
 1. $u(t, 0) = 0$,
 2. $u(t, h) = u(t, 0)$, or simply $u(t, h) = 0$.
 
-The directional approxaimtion of the second derivative that uses four spatial steps is
+The directional approximation of the second derivative that uses four spatial steps is
 
 $$
 \partial_x^2 u(t, 0) \approx \frac{2u(t, 0) - 5u(t, h) + 4u(t, 2h) - u(t, 3h)}{h^2}.
@@ -97,22 +97,22 @@ $$
 For other options, see [Finite Difference Coefficients Calculator
 ](https://web.media.mit.edu/~crtaylor/calculator.html).
 
-To conclude, the **Naive Approximation** of the pinched end and hinged-supported end can be approxaimated as two conditions for each case:
+To conclude, the **Naive Approximation** of the pinched end and hinged-supported end can be approximated as two conditions for each case:
 
 | No. |  | Pinched End | Hinged-Supported End |
 |---|---|---|---|
 | 1. | $u(t, 0) = $ | 0 | 0 |
 | 2. | $u(t, h) = $ | 0 | $[4u(t, 2h) - u(t, 3h)]/5$ |
 
-Note, that we implement a computation scheme (*CN* or *555*) at the spatial points $x = 2h$, $x = 3h$ and others, so in this context they are assumed to be given.
+Note that we implement a computation scheme (*CN* or *555*) at the spatial points $x = 2h$, $x = 3h$ and others, so in this context they are assumed to be given.
 
 ### Compact Approximation
 
-The construction of the compact approximation of the boundary conditions shares the similar with the construction of the compact schemes for the rod equation itself.
+The construction of the compact approximation of the boundary conditions shares similarities with the construction of the compact schemes for the rod equation itself.
 
 > Define the stencil or a template with unknown coefficients and find them by solving a system of linear algebraic equations (SLAE) using reference solutions.
 
-Naive approach approximates the boundary conditions using only one time moment `t`. Assuming we know the values of function `u` at the the previous time step $t - \tau$, we can incorporate it into our stencil.
+The naive approach approximates the boundary conditions using only one time moment `t`. Assuming we know the values of the function `u` at the previous time step $t - \tau$, we can incorporate it into our stencil.
 
 ![rod_boundary_stencil](rod_boundary_stencil.png)
 
@@ -131,24 +131,27 @@ The test functions $u_\text{test}$ should satisfy the considered boundary condit
 
 #### Compact Approxaimation: Pinched Edge
 
-This problem is characterized by two boundary condition:
+This problem is characterized by two boundary conditions:
 
 $$
 u(t, 0) = 0, \quad \partial_x u(t, 0) = 0.
 $$
 
-A test function $u_\text{ref}$ should be a monome and it should satisfy both conditions. For example, the simplest monome is $u_\text{ref}(t, x) = x^2$. Substituting it into the rod equation gives us $f_\text{ref} = 0$. So, applying these two reference functions into the boundary condition stencil for two possible normalizations we get
+A test function $u_\text{ref}$ should be a monomial and it should satisfy both conditions. For example, the simplest monomial is $u_\text{ref}(t, x) = x^2$. Substituting it into the rod equation gives us $f_\text{ref} = 0$. So, applying these two reference functions into the boundary condition stencil for two possible normalizations, we get
 
 $$
-1 \cdot 0 + 0 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0, \\
-0 \cdot 0 + 1 \cdot h^2 + \alpha_2^0 \cdot (2h)^2 + \alpha_3^0 \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
+1 \cdot 0 + 0 \cdot h^2 + (\alpha_2^0 + \alpha_2^1) \cdot (2h)^2 + (\alpha_3^0 + \alpha_3^1) \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0,
 $$
 
-Here, the first equation contributes to the SLAE of the boundary value $u(0, 0)$, and the second equation is the part of SLAE of the pre-boundary value $u(0, h)$. The full set of reference function is thus as follows:
+$$
+0 \cdot 0 + 1 \cdot h^2 + (\alpha_2^0 + \alpha_2^1) \cdot (2h)^2 + (\alpha_3^0 + \alpha_3^1) \cdot (3h)^2 = \beta_0^0 \cdot 0 + \beta_1^0 \cdot 0.
+$$
+
+Here, the first equation contributes to the SLAE of the boundary value $u(0, 0)$, and the second equation is part of the SLAE of the pre-boundary value $u(0, h)$. The full set of reference functions is thus as follows:
 
 | No. | $u_\text{ref}$ | $f_\text{ref}$ | Border Equation | Pre-border Equation |
 |---|---|---|---|---|
-| 1 | $x^2$ | $0$ | $4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ | $h^2 + 4\alpha_2^0 h^2 + 9\alpha_3^0 h^2 = 0$ |
+| 1 | $x^2$ | $0$ | $4(\alpha_2^0 + \alpha_2^1) h^2 + 9(\alpha_3^0 + \alpha_3^1) h^2 = 0$ | $h^2 + 4(\alpha_2^0 + \alpha_2^1) h^2 + 9(\alpha_3^0 + \alpha_3^1) h^2 = 0$ |
 | 2 | $x^3$ | $0$ |  |  |
 | 3 | $x^4$ | $24C$ |  |  |
 | 4 | $t x^2$ | $0$ |  |  |
@@ -183,15 +186,15 @@ If on the right edge of the rod we have the same boundary conditions, then the s
 
 ### Numerical Results
 
-To compare the compact approximation of the border conditions with the naive approac we introduce a reference solution that satisfies the rod equation and the chosen boundary conditions. For example, for the **Pinched Edge** conditions we can choose $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin^2(x)$. In this case, the reference forcing is $f_\text{ref}(t, x) = \cos(\omega t) \cdot [(\omega^2 \cos(2x))/2 - \omega^2/2 - 8C\cos(2x) + 2D\omega^2\cos(2x)]$.
+To compare the compact approximation of the border conditions with the naive approach we introduce a reference solution that satisfies the rod equation and the chosen boundary conditions. For example, for the **Pinched Edge** conditions we can choose $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin^2(x)$. In this case, the reference forcing is $f_\text{ref}(t, x) = \cos(\omega t) \cdot [(\omega^2 \cos(2x))/2 - \omega^2/2 - 8C\cos(2x) + 2D\omega^2\cos(2x)]$.
 
 #### Numerical Results: Pinched Edge
 
-The orders of the computational chemes CN and 555 when the *naive approxaimation* of the border conditions is used are presented in the following figure.
+The orders of the computational schemes CN and 555 when the *naive approximation* of the border conditions is used are presented in the following figure.
 
 ![order_pinched_naive](order_u0u1_all_naive.png)
 
-Here, $t^*$ indicated the time when the obtained and the reference solutions are compared. As we see, the *C-norm* of the error is large, indicating that the numerical solution is significantly different from the reference solution. The second or fourth order of the computational schemes observed for the periodic problem vanished because of the naive approximation of the boundary problem. In fact, the naive approach leads to a completely unreasonable solution $u$.
+Here, $t^*$ indicates the time when the obtained and the reference solutions are compared. As we see, the *C-norm* of the error is large, indicating that the numerical solution is significantly different from the reference solution. The second or fourth order of the computational schemes observed for the periodic problem vanished because of the naive approximation of the boundary problem. In fact, the naive approach leads to a completely unreasonable solution $u$.
 
 In contrast, when applying *compact approximation* of the **Pinched Edge** border conditions, the orders of the schemes are preserved or even improved.
 
