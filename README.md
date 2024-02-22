@@ -12,6 +12,13 @@ Sometimes on Thursdays
 
 # 📚 Content
 
+- [First Semester](#first-semester)
+- [Second Semester](#second-semester)
+
+---
+
+# First Semester
+
 ## Seminar 1: _Transport and Continuity Equations_
 
 September 21st, 2023
@@ -106,3 +113,37 @@ December 7th, 2023
     - Plotting and interpreting the $C$ and $L^2$​ norms of the difference between numerical and true solutions.
 - **Hands-On MATLAB Coding Session**:
     - Analysis of solution accuracy against the true solution for various grid sizes.
+
+---
+
+# Second Semester
+
+## Seminar 201: _Numerical Solutions to the Rod Equation_
+
+January 18th, 2024
+
+- Investigation of numerical solutions for the rod equation using Crank-Nicolson and compact schemes.
+- Implementation and analysis of the Crank-Nicolson and "5-5-5" compact schemes in MATLAB to solve the rod equation.
+- Periodic boundary conditions for the rod equation.
+- Comparison of reference solutions with the obtained numerical solutions to evaluate accuracy and stability.
+- Error analysis through calculating error norms at the final time moment for different spatial points using the implemented numerical schemes.
+
+## Seminar 202: _Modular Implementation and Analysis of Numerical Schemes for the Rod Equation in Matlab_
+
+February 1st, 2024
+
+- Creation of a modular Matlab code for simulating the rod equation using Crank-Nicolson (CN) and "5-5-5" schemes.
+- Explanation of the computational process involving spatial and temporal discretization parameters.
+- Application and comparison of reference solutions with numerical solutions for accuracy assessment.
+- Analysis of errors using C and L^2 norms for different numbers of spatial steps.
+- Visualization and evaluation of the numerical scheme's performance through graphs plotting error norms against spatial discretization points.
+
+## Seminar 203: _Rod Equation: Advanced Computational Topics_
+
+February 15th, 2024
+
+- Discussion on discretization process introducing spatial and temporal steps in solving the rod equation.
+- Importance of interpolation techniques to compute function values at desired time points.
+- Introduction of naive and compact approximations for boundary conditions of the rod equation.
+- Methods to construct compact approximations using stencil templates and coefficient derivations.
+- Numerical results comparing the effectiveness of the naive and compact boundary condition approximations.
