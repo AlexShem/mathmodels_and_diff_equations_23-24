@@ -126,3 +126,13 @@ February 1st, 2024
 - Application and comparison of reference solutions with numerical solutions for accuracy assessment.
 - Analysis of errors using C and L^2 norms for different numbers of spatial steps.
 - Visualization and evaluation of the numerical scheme's performance through graphs plotting error norms against spatial discretization points.
+
+## Seminar 203: _Rod Equation: Advanced Computational Topics_
+
+February 15th, 2024
+
+- Discussion on discretization process introducing spatial and temporal steps in solving the rod equation.
+- Importance of interpolation techniques to compute function values at desired time points.
+- Introduction of naive and compact approximations for boundary conditions of the rod equation.
+- Methods to construct compact approximations using stencil templates and coefficient derivations.
+- Numerical results comparing the effectiveness of the naive and compact boundary condition approximations.
