@@ -12,6 +12,13 @@ Sometimes on Thursdays
 
 # 📚 Content
 
+- [First Semester](#first-semester)
+- [Second Semester](#second-semester)
+
+---
+
+# First Semester
+
 ## Seminar 1: _Transport and Continuity Equations_
 
 September 21st, 2023
@@ -106,6 +113,10 @@ December 7th, 2023
     - Plotting and interpreting the $C$ and $L^2$​ norms of the difference between numerical and true solutions.
 - **Hands-On MATLAB Coding Session**:
     - Analysis of solution accuracy against the true solution for various grid sizes.
+
+---
+
+# Second Semester
 
 ## Seminar 201: _Numerical Solutions to the Rod Equation_
 
