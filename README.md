@@ -106,3 +106,14 @@ December 7th, 2023
     - Plotting and interpreting the $C$ and $L^2$​ norms of the difference between numerical and true solutions.
 - **Hands-On MATLAB Coding Session**:
     - Analysis of solution accuracy against the true solution for various grid sizes.
+
+## Seminar 201: _Numerical Solutions to the Rod Equation_
+
+January 18th, 2024
+
+- Investigation of numerical solutions for the rod equation using Crank-Nicolson and compact schemes.
+- Implementation and analysis of the Crank-Nicolson and "5-5-5" compact schemes in MATLAB to solve the rod equation.
+- Periodic boundary conditions for the rod equation.
+- Comparison of reference solutions with the obtained numerical solutions to evaluate accuracy and stability.
+- Error analysis through calculating error norms at the final time moment for different spatial points using the implemented numerical schemes.
+- 
