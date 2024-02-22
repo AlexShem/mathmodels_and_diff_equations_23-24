@@ -116,4 +116,13 @@ January 18th, 2024
 - Periodic boundary conditions for the rod equation.
 - Comparison of reference solutions with the obtained numerical solutions to evaluate accuracy and stability.
 - Error analysis through calculating error norms at the final time moment for different spatial points using the implemented numerical schemes.
-- 
+
+## Seminar 202: _Modular Implementation and Analysis of Numerical Schemes for the Rod Equation in Matlab_
+
+February 1st, 2024
+
+- Creation of a modular Matlab code for simulating the rod equation using Crank-Nicolson (CN) and "5-5-5" schemes.
+- Explanation of the computational process involving spatial and temporal discretization parameters.
+- Application and comparison of reference solutions with numerical solutions for accuracy assessment.
+- Analysis of errors using C and L^2 norms for different numbers of spatial steps.
+- Visualization and evaluation of the numerical scheme's performance through graphs plotting error norms against spatial discretization points.
