@@ -17,6 +17,7 @@ The discretization process introduces a temporal step $\tau$ and a spatial step 
 Usually, for the numerical simulations we set an upper integration time limit `T`. So, we expect the computational method, like, *Crank-Nicolson scheme* or a *Compact scheme* to produce the numerical solution on the time interval $t \in [0, T]$. However, by introducing the spatial step `h` and the temporal step `tau` we can only calculate the values of the unknown function $u(t, x)$ at predetermined temporal-spatial points.
 
 For example, consider the final time of interest to be `T = 1` and the temporal step `tau = 0.3`. Then, we can only compute the function `u` at times `t = [0, 0.3, 0.6, 0.9, 1.2]`. Here, the initial conditions are set at time `t = 0` and we continue integration until the first time we exceed the desired time `T`. In this case, the total number of temporal points `Nt` needed to compute the solution is the number of temporal steps required to exceed the desired time `T` plus one for the initial time moment `t = 0`. A sample code snippet may have the following form:
+
 ```matlab
 T = 1;
 tau = 0.3;
