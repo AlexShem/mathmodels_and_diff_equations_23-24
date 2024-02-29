@@ -179,7 +179,14 @@ In the event of identical boundary conditions at the rod's right edge, these coe
 
 ### Numerical Results
 
-To compare the compact approximation of the border conditions with the naive approach we introduce a reference solution that satisfies the rod equation and the chosen boundary conditions. For example, for the **Pinched Edge** conditions we can choose $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin^2(x)$. In this case, the reference forcing is $f_\text{ref}(t, x) = \cos(\omega t) \cdot [(\omega^2 \cos(2x))/2 - \omega^2/2 - 8C\cos(2x) + 2D\omega^2\cos(2x)]$. On the other hand, for the Hinged-Supported end conditions we can choose $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin(x)$. In this case, the reference forcing is $f_\text{ref}(t, x) = -\cos(\omega t) \sin(x) \cdot (-C + D\omega^2 + \omega^2)$.
+To compare the compact approximation of the border conditions with the naive approach we introduce a reference solution that satisfies the rod equation and the chosen boundary conditions. For example, we can choose the following reference solutions and the corresponding forcing.
+
+- **Pinched Edge** conditions:
+  - $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin^2(x)$;
+  - $f_\text{ref}(t, x) = \cos(\omega t) \cdot [(\omega^2 \cos(2x))/2 - \omega^2/2 - 8C\cos(2x) + 2D\omega^2\cos(2x)]$.
+- **Hinged-Supported** conditions:
+  - $u_\text{ref}(t, x) = \cos(\omega t) \cdot \sin(x)$,
+  - $f_\text{ref}(t, x) = -\cos(\omega t) \sin(x) \cdot (-C + D\omega^2 + \omega^2)$.
 
 #### Numerical Results: Pinched Edge
 
