@@ -164,9 +164,9 @@ Upon solving the systems for unknown coefficients, we obtain:
 | $\alpha_0^0$ | $1$ | $0$ |
 | $\alpha_1^0$ | $0$ | $1$ |
 | $\alpha_2^0$ | $0$ | $-4/5$ |
-| $\alpha_3^0$ | $0$ | $0$ |
+| $\alpha_3^0$ | $0$ | $1/5$ |
 | $\alpha_1^1$ | $0$ | $0$ |
-| $\alpha_2^1$ | $0$ | $1/5$ |
+| $\alpha_2^1$ | $0$ | $0$ |
 | $\beta_0^0$ | $0$ | $11 h^4 / 60C$ |
 | $\beta_1^0$ | $0$ | $0$ |
 
