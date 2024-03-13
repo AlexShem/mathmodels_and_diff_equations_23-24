@@ -169,6 +169,9 @@ $$
 \end{gathered}
 $$
 
+<img src="https://latex.codecogs.com/gif.latex?\begin{gathered}\left(a_1+p_1\tilde{u}_{j-1}^{n+1}\right)\varepsilon_{j-1}^{n+1}+\left(b_1+q_1\tilde{u}_j^{n+1}\right)\varepsilon_j^{n+1}+\left(c_1+r_1\tilde{u}_{j+1}^{n+1}\right)\varepsilon_{j+1}^{n+1}=\\-a_0u_{j-1}^n-b_0u_j^n-c_0u_{j+1}^n\\-a_1\tilde{u}_{j-1}^{n+1}-b_1\tilde{u}_j^{n+1}-c_1\tilde{u}_{j+1}^{n+1}\\-\frac{p_1}{2}\left(\tilde{u}_{j-1}^{n+1}\right)^2-\frac{q_1}{2}\left(\tilde{u}_j^{n+1}\right)^2-\frac{r_1}{2}\left(\tilde{u}_{j+1}^{n+1}\right)^2\\-p_0\frac{\left(u_{j-1}^n\right)^2}{2}-q_0\frac{\left(u_j^n\right)^2}{2}-r_0\frac{\left(u_{j+1}^n\right)^2}{2}\end{gathered}" />
+
+
 Thus, leveraging the computed values $u_j^n$​ and $\tilde{u}_j^{n+1}$​ from explicit schemes, alongside the previously determined compact scheme coefficients, we can address this system of equations for the error terms $\varepsilon_j^{n+1}$, facilitating a refined solution approach for the nonlinear PDE.
 
 ## Matlab: Practice
