@@ -35,7 +35,7 @@ The Forward Euler scheme, a simple yet foundational approach, advances the solut
 This equation can be approximated using an Euler scheme with the following form:
 
 $$
-
+\tilde{u}_{j}^{n+1}=u_j^n-\tau\frac{\left(u_{j+1}^n\right)^2-\left(u_{j-1}^n\right)^2}{4h}.
 $$
 
 <img src="https://latex.codecogs.com/gif.latex?\tilde{u}_{j}^{n+1}=u_j^n-\tau\frac{\left(u_{j+1}^n\right)^2-\left(u_{j-1}^n\right)^2}{4h}." />
