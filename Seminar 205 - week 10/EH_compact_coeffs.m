@@ -38,8 +38,10 @@ for k = 1 : numel(u_test)
 
     coef_eqs(k, 1) = sum(u_comact, 'all') == sum(f_comact, 'all');
 end
-coef_eqs(end) = p2 == -3*tau/(2*h);
-coef_eqs(end+1) = p2 == -r2;
+
+% Conditions for the coefficients
+coef_eqs(end) = p2 == -3*tau/(2*h); % Normalization condition
+coef_eqs(end+1) = p2 == -r2; % Symmetry condition
 
 %% Solution
 comp_eqs = solve(coef_eqs, [coefs_u_app, coefs_f_app])
