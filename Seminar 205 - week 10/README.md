@@ -35,11 +35,10 @@ The Forward Euler scheme, a simple yet foundational approach, advances the solut
 This equation can be approximated using an Euler scheme with the following form:
 
 $$
-\tilde{u}_{j}^{n+1}=u_j^n-\tau\frac{\left(u_{j+1}^n\right)^2-\left(u_{j-1}^n\right)^2}{4h}.
+
 $$
 
 <img src="https://latex.codecogs.com/gif.latex?\tilde{u}_{j}^{n+1}=u_j^n-\tau\frac{\left(u_{j+1}^n\right)^2-\left(u_{j-1}^n\right)^2}{4h}." />
-
 
 #### Explicit Schemes: MacCormack Scheme
 
@@ -52,6 +51,8 @@ $$
 \end{aligned}
 $$
 
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&\hat{u}_j^{n+1}=u_j^n-\frac{\tau}{h}\left[f\left(u_{j+1}^n\right)-f\left(u_j^n\right)\right]\\&\tilde{u}_j^{n+1}=\frac{1}{2}\left\{u_j^n+\hat{u}_j^{n+1}-\frac{\tau}{h}\left[f\left(\hat{u}_j^{n+1}\right)-f\left(\hat{u}_{j-1}^{n+1}\right)\right]\right\}\end{aligned}" />
+
 #### Explicit Schemes: Lax-Wendroff Scheme
 
 The Lax-Wendroff scheme, developed to improve upon the basic Euler method, incorporates a Taylor series expansion to second order, aiming to better capture the wave propagation dynamics inherent in the Euler-Hopf equation.
@@ -62,6 +63,9 @@ $$
 & \tilde{u}_j^{n+1}=u_j^n-\frac{\tau}{h}\left[f\left(u_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right)-f\left(u_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right]
 \end{aligned}
 $$
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&u_{j+\frac{1}{2}}^{n+\frac{1}{2}}=\frac{u_j^n+u_{j+1}^n}{2}-\frac{\tau}{h}\frac{f\left(u_{j+1}^n\right)-f\left(u_j^n\right)}{2}\\&\tilde{u}_j^{n+1}=u_j^n-\frac{\tau}{h}\left[f\left(u_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right)-f\left(u_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right]\end{aligned}" />
+
 
 ### Compact Correction
 
@@ -136,6 +140,8 @@ a_1\left(\tilde{u}_{j-1}^{n+1}+\varepsilon_{j-1}^{n+1}\right)+b_1\left(\tilde{u}
 \end{gathered}
 $$
 
+<img src="https://latex.codecogs.com/gif.latex?\begin{gathered}a_1\left(\tilde{u}_{j-1}^{n+1}+\varepsilon_{j-1}^{n+1}\right)+b_1\left(\tilde{u}_j^{n+1}+\varepsilon_j^{n+1}\right)+c_1\left(\tilde{u}_{j+1}^{n+1}+\varepsilon_{j+1}^{n+1}\right)\\+a_0u_{j-1}^n+b_0u_j^n+c_0u_{j+1}^n=\\=-p_1\frac{\left(\tilde{u}_{j-1}^{n+1}+\varepsilon_{j-1}^{n+1}\right)^2}{2}-q_1\frac{\left(\tilde{u}_j^{n+1}+\varepsilon_j^{n+1}\right)^2}{2}-r_1\frac{\left(\tilde{u}_{j+1}^{n+1}+\varepsilon_{j+1}^{n+1}\right)^2}{2}\\-p_0\frac{\left(u_{j-1}^n\right)^2}{2}-q_0\frac{\left(u_j^n\right)^2}{2}-r_0\frac{\left(u_{j+1}^n\right)^2}{2}.\end{gathered}"/>
+
 After expanding the brackets we get:
 
 $$
@@ -149,7 +155,9 @@ a_1\left(\tilde{u}_{j-1}^{n+1}+\varepsilon_{j-1}^{n+1}\right)+b_1\left(\tilde{u}
 \end{gathered}
 $$
 
-By assuming small error terms $\varepsilon_j^{n+1}$, we linearize the equation by omitting squared error terms. This simplification yields a linear equation set for $\varepsilon_j^{n+1}$, solvable via a tridiagonal matrix system. The main diagonal carries $(b_1+q_1 \tilde{u}_j^{n+1})$, with lower diagonal $(a_1+p_1 \tilde{u}_{j-1}^{n+1})$ and upper diagonal $(c_1+r_1 \tilde{u}_{j+1}^{n+1})$.
+<img src="https://latex.codecogs.com/gif.latex?\begin{gathered}a_1\left(\tilde{u}_{j-1}^{n+1}+\varepsilon_{j-1}^{n+1}\right)+b_1\left(\tilde{u}_j^{n+1}+\varepsilon_j^{n+1}\right)+c_1\left(\tilde{u}_{j+1}^{n+1}+\varepsilon_{j+1}^{n+1}\right)\\+a_0u_{j-1}^n+b_0u_j^n+c_0u_{j+1}^n=\\=-\frac{p_1}{2}\left(\left(\tilde{u}_{j-1}^{n+1}\right)^2+2\tilde{u}_{j-1}^{n+1}\varepsilon_{j-1}^{n+1}+\left(\varepsilon_{j-1}^{n+1}\right)^2\right)\\-\frac{q_1}{2}\left(\left(\tilde{u}_j^{n+1}\right)^2+2\tilde{u}_j^{n+1}\varepsilon_j^{n+1}+\left(\varepsilon_j^{n+1}\right)^2\right)\\-\frac{r_1}{2}\left(\left(\tilde{u}_{j+1}^{n+1}\right)^2+2\tilde{u}_{j+1}^{n+1}\varepsilon_{j+1}^{n+1}+\left(\varepsilon_{j+1}^{n+1}\right)^2\right)\\-p_0\frac{\left(u_{j-1}^n\right)^2}{2}-q_0\frac{\left(u_j^n\right)^2}{2}-r_0\frac{\left(u_{j+1}^n\right)^2}{2}\end{gathered}" />
+
+By assuming small error terms $\varepsilon_j^{n+1}$, we linearize the equation by omitting squared error terms. This simplification yields a linear equation set for $\varepsilon_j^{n+1}$, solvable via a tridiagonal matrix system. The main diagonal carries $(b_1+q_1\tilde{u}_j^{n+1})$, with lower diagonal $(a_1+p_1\tilde{u}_{j-1}^{n+1})$ and upper diagonal $(c_1+r_1\tilde{u}_{j+1}^{n+1})$.
 
 $$
 \begin{gathered}
