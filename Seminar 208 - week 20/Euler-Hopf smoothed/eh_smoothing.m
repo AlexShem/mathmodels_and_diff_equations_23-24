@@ -34,7 +34,7 @@ if any(jind_left)
 end
 
 % Non-jump point smoothing
-Su = P_smoothing(P_smoothing(P_smoothing(u)))/8;
+Su = S_smoothing(S_smoothing(S_smoothing(u)))/8;
 s_ind = find(abs(Su) > 10^param_smooth * max(u));
 s_ind = setdiff(s_ind, [jind_right, jind_left]);
 
