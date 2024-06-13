@@ -17,6 +17,16 @@ C_norm = zeros(size(Nx));
 figure(1);
 
 for j = 1 : length(Nx)
+    x = linspace(0, L, Nx(j) + 1);
+    h = x(2) - x(1);
+    tau = nu * h.^2 / D;
+
+    [U, ~, ~, x, ~, t] = B_integration(L, T, D, Nx(j), tau, nu, u_0, correction);
+    [x_mesh, t_mesh] = meshgrid(x, t);
+    Cn = max(abs(u_ref(t_mesh, x_mesh) - U), [], 2);
+    semilogy(t, Cn, LineWidth = 1); hold on;
+
+    C_norm(j) = Cn(end);
 end
 hold off;
 xlabel('$t$, time', Interpreter = 'latex', FontSize = 14)
